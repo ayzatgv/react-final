@@ -37,14 +37,13 @@ class Login extends Component {
     handleClick() {
         api.post(`users/login`, { username: this.state.username, password: this.state.password })
             .then(res => {
-                localStorage.setItem('Token', res.data);
-
+                localStorage.setItem('Token', res.data.token);
+                
                 this.props.setLoginStatus(true);
-
                 this.props.getCategory();
-                this.props.getPost();
+               this.props.getPost();
 
-                alert('ورود شما با موفقیت انجام شد')
+               alert('ورود شما با موفقیت انجام شد')
             })
             .catch(error => {
                 alert('ورود شما با خطا مواجه شد')
