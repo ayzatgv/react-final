@@ -17,6 +17,11 @@ class AddCategory extends Component {
     }
 
     handleClick() {
+        if(this.state.name === '' || this.state.parentCategoryId === 0)
+        {
+            alert('فیلدها را پرکنید')
+        }
+        
         const data = {
             name: this.state.name,
             parentCategoryId: this.state.parentCategoryId,
@@ -50,18 +55,11 @@ class AddCategory extends Component {
                                             placeholder="name" />
                                     </Form.Group>
                                     <Form.Group controlId="parentCategoryId">
-                                        <Form.Label>parentCategoryId</Form.Label>
+                                        <Form.Label>parentCategory</Form.Label>
                                         <Form.Control onChange={(e) => { this.setState({ parentCategoryId: e.target.value, parentCategoryName: e.target.options[e.target.selectedIndex].text }) }} as="select">
                                             <option value={0}>یک گزینه را انتخاب کنید</option>
                                             {Categories}
                                         </Form.Control>
-                                    </Form.Group>
-
-                                    <Form.Group controlId="id">
-                                        <Form.Label>id</Form.Label>
-                                        <Form.Control value={this.state.id}
-                                            onChange={(e) => { this.setState({ id: e.target.value }) }}
-                                            placeholder="id" />
                                     </Form.Group>
                                     <Button onClick={this.handleClick} variant="primary" >
                                         ثبت

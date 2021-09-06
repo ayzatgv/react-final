@@ -7,17 +7,21 @@ class AddPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title:'',
-            description:'',
-            categoryId:0,
-            authorId:0,
-            id:''
+            title: '',
+            description: '',
+            categoryId: 0,
+            authorId: 0,
+            id: ''
         }
 
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
+        if (this.state.title === '' || this.state.description === '' || this.state.categoryId === 0) {
+            alert('فیلدها را پرکنید')
+        }
+
         const data = {
             title: this.state.title,
             description: this.state.description,
@@ -58,7 +62,7 @@ class AddPost extends Component {
                                             placeholder="description" />
                                     </Form.Group>
                                     <Form.Group controlId="categoryId">
-                                        <Form.Label>categoryId</Form.Label>
+                                        <Form.Label>category</Form.Label>
                                         <Form.Control onChange={(e) => { this.setState({ categoryId: e.target.value }) }} as="select">
                                             <option value={0}>یک گزینه را انتخاب کنید</option>
                                             {Categories}
