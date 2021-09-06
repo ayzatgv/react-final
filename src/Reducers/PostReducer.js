@@ -18,7 +18,7 @@ export default function PostReducer(state = initialState, action) {
             }
         case EDIT_POST:
             {
-                const index = state.items.findIndex((item) => item.ID === action.payload.ID);
+                const index = state.items.findIndex((item) => item.id === action.payload.id);
                 const newArray = [...state.items];
                 newArray[index] = action.payload;
                 return {
@@ -28,7 +28,7 @@ export default function PostReducer(state = initialState, action) {
             }
         case DELETE_POST:
             return {
-                items: state.items.filter((item) => item.ID !== action.payload)
+                items: state.items.filter((item) => item.id !== action.payload)
             }
         default:
             return state;

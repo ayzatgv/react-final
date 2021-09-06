@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addPost } from '../Actions/PostAction';
-import jwt_decode from "jwt-decode";
 
 class AddPost extends Component {
     constructor(props) {
@@ -19,15 +18,15 @@ class AddPost extends Component {
     }
 
     handleClick() {
-        const category = {
+        const post = {
             title: this.state.title,
             description: this.state.description,
             categoryId: this.state.categoryId,
-            authorId: jwt_decode(localStorage.getItem('Token')).id,
+            authorId: this.state.authorId,
             id: this.state.id
         };
 
-        this.props.addCategory(category);
+        this.props.addPost(post);
     }
 
     render() {
@@ -61,9 +60,15 @@ class AddPost extends Component {
                                     <Form.Group controlId="categoryId">
                                         <Form.Label>categoryId</Form.Label>
                                         <Form.Control onChange={(e) => { this.setState({ categoryId: e.target.value }) }} as="select">
-                                            <option value={0}>Please select an option</option>
+                                            <option value={0}>یک گزینه را انتخاب کنید</option>
                                             {Categories}
                                         </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group controlId="authorId">
+                                        <Form.Label>authorId</Form.Label>
+                                        <Form.Control value={this.state.authorId}
+                                            onChange={(e) => { this.setState({ authorId: e.target.value }) }}
+                                            placeholder="authorId" />
                                     </Form.Group>
                                     <Form.Group controlId="id">
                                         <Form.Label>id</Form.Label>

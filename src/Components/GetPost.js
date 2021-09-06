@@ -17,11 +17,11 @@ class GetPost extends Component {
     }
 
     render() {
-        let Tableee = this.props.Categories.map((item) => {
+        let Tableee = this.props.Posts.map((item) => {
             return (
-                <tr key={item.ID} >
-                    <td><Button onClick={() => this.handleClick(item.ID)} variant="primary" >Delete</Button></td>
-                    <td><Link to={`/post/detail/${item.ID}`}><Button variant="primary" >Edit</Button></Link></td>
+                <tr key={item.id} >
+                    <td><Button onClick={() => this.handleClick(item.id)} variant="primary" >Delete</Button></td>
+                    <td><Link to={`/post/detail/${item.id}`}><Button variant="primary" >Edit</Button></Link></td>
                     <td>{item.id}</td>
                     <td>{item.title}</td>
                     <td>{item.description}</td>

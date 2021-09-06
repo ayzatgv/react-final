@@ -9,7 +9,7 @@ export const getPost = () => dispatch => {
         .then(res => {
             dispatch({
                 type: GET_POST,
-                payload: res.data
+                payload: res.data.data.results
             })
         })
         .catch(error => {
@@ -22,7 +22,7 @@ export const addPost = data => dispatch => {
         .then(res => {
             dispatch({
                 type: ADD_POST,
-                payload: res.data
+                payload: res.data.data
             });
             document.getElementById('GoToPost').click();
         })
@@ -32,11 +32,11 @@ export const addPost = data => dispatch => {
 };
 
 export const editPost = data => dispatch => {
-    api.put(`posts/{id}`, data)
+    api.put(`posts`, data)
         .then(res => {
             dispatch({
                 type: EDIT_POST,
-                payload: res.data
+                payload: res.data.data
             })
             document.getElementById('GoToPost').click();
         })
@@ -46,7 +46,7 @@ export const editPost = data => dispatch => {
 };
 
 export const deletePost = id => dispatch => {
-    api.delete(`posts/{id}`)
+    api.delete(`posts/${id}`)
         .then(res => {
             dispatch({
                 type: DELETE_POST,

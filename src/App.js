@@ -10,7 +10,9 @@ import { getCategory } from './Actions/CategoryAction';
 import { getPost } from './Actions/PostAction';
 
 import Login from './Components/Login';
+import Register from './Components/Register';
 import Navigation from './Components/Navigation';
+import NotFound from './Components/NotFound';
 import Main from './Components/Main';
 
 import GetCategory from './Components/GetCategory';
@@ -21,7 +23,7 @@ import AddPost from './Components/AddPost';
 
 import DetailCategory from './Components/DetailCategory';
 import DetailPost from './Components/DetailPost';
-import Register from './Components/Register';
+
 
 class App extends Component {
   constructor(props) {
@@ -52,19 +54,20 @@ class App extends Component {
                 <Route path="/post" exact component={GetPost} />
                 <Route path="/post/add" exact component={AddPost} />
                 <Route path="/post/detail/:id" exact component={DetailPost} />
+                <Route component={NotFound} />
               </Switch>
             </Router>
           </div>
-        ) : 
+        ) :
         <div>
-        <Router >
-          <Switch>
-            <Route path="/" exact component={Login} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/register" exact component={Register} />
-          </Switch>
-        </Router>
-      </div>
+          <Router >
+            <Switch>
+              <Route path="/login" exact component={Login} />
+              <Route path="/register" exact component={Register} />
+              <Route path="/" component={Login} />
+            </Switch>
+          </Router>
+        </div>
     );
   }
 }

@@ -7,10 +7,10 @@ class AddCategory extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name:'',
-            parentCategoryId:0,
-            parentCategoryName:'',
-            id:0
+            name: '',
+            parentCategoryId: 0,
+            parentCategoryName: '',
+            id: 0
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -20,8 +20,8 @@ class AddCategory extends Component {
         const category = {
             name: this.state.name,
             parentCategoryId: this.state.parentCategoryId,
-            parentCategoryName:this.state.parentCategoryName,
-            id:this.state.id
+            parentCategoryName: this.state.parentCategoryName,
+            id: this.state.id
         };
 
         this.props.addCategory(category);

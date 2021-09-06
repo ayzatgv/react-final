@@ -17,7 +17,7 @@ class Main extends Component {
 
         return (
            <div>
-
+               <h>WELCOME</h>
            </div>
         );
     }

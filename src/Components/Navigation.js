@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import jwt_decode from "jwt-decode";
+import { setLoginStatus } from '../Actions/LoginAction';
 import { connect } from 'react-redux';
 
 class Navigation extends Component {
@@ -22,7 +22,7 @@ class Navigation extends Component {
             <>
                 <Link id='GoToMain' style={{ display: 'none' }} to="/">a</Link>
                 <Link id='GoToCategories' style={{ display: 'none' }} to="/category">a</Link>
-                <Link id='GoToPosts' style={{ display: 'none' }} to="/site">a</Link>
+                <Link id='GoToPosts' style={{ display: 'none' }} to="/post">a</Link>
 
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -33,8 +33,7 @@ class Navigation extends Component {
                             <Nav.Link ><div onClick={() => { document.getElementById('GoToPosts').click(); }}>Posts</div></Nav.Link>
                         </Nav>
                         <Nav>
-                            <NavDropdown title={jwt_decode(localStorage.getItem('Token')).unique_name} id="collasible-nav-dropdown">
-                                <NavDropdown.Divider />
+                                <NavDropdown title={'Token?'} id="collasible-nav-dropdown">
                                 <NavDropdown.Item className="" onClick={this.handleClick}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
@@ -46,6 +45,7 @@ class Navigation extends Component {
 }
 
 const mapStateToProps = state => ({
+    LoginStatus: state.LoginStatus
 });
 
-export default connect(mapStateToProps, { })(Navigation);
+export default connect(mapStateToProps, { setLoginStatus })(Navigation);

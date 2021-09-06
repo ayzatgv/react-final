@@ -11,7 +11,8 @@ class DetailPost extends Component {
             title: '',
             description: '',
             categoryId: 0,
-            authorId: 0
+            authorId: 0,
+            id:''
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -20,13 +21,13 @@ class DetailPost extends Component {
     componentDidMount() {
         let id = this.props.match.params.id;
 
-        api.get(`posts/${id}`)
+        api.get(`Posts/${id}`)
             .then(res => {
                 this.setState({
-                    title: res.data.title,
-                    description: res.data.description,
-                    categoryId: res.data.categoryId,
-                    authorId: res.data.authorId
+                    title: res.data.data.title,
+                    description: res.data.data.description,
+                    categoryId: res.data.data.categoryId,
+                    authorId: res.data.data.authorId
                 })
             })
             .catch(error => {
@@ -41,7 +42,7 @@ class DetailPost extends Component {
             categoryId: this.state.categoryId,
             authorId: this.state.authorId,
         };
-
+        
         this.props.editPost(post);
     }
 
@@ -76,9 +77,15 @@ class DetailPost extends Component {
                                     <Form.Group controlId="categoryId">
                                         <Form.Label>categoryId</Form.Label>
                                         <Form.Control onChange={(e) => { this.setState({ categoryId: e.target.value }) }} as="select">
-                                            <option value={0}>Please select an option</option>
+                                            <option value={0}>یک گزینه را انتخاب کنید</option>
                                             {Categories}
                                         </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group controlId="authorId">
+                                        <Form.Label>authorId</Form.Label>
+                                        <Form.Control value={this.state.authorId}
+                                            onChange={(e) => { this.setState({ authorId: e.target.value }) }}
+                                            placeholder="authorId" />
                                     </Form.Group>
 
                                     <Button onClick={this.handleClick} variant="primary" >
@@ -96,7 +103,7 @@ class DetailPost extends Component {
 }
 
 const mapStateToProps = state => ({
-    Categories: state.Categories.items 
+    Categories: state.Categories.items
 });
 
 export default connect(mapStateToProps, { editPost })(DetailPost);

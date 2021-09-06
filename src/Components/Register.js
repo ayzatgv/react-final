@@ -17,7 +17,7 @@ class Register extends Component {
             fullName: '',
             age: 0,
             gender: 'Male',
-
+            id: 0,
             width: 0,
             height: 0
         }
@@ -38,7 +38,7 @@ class Register extends Component {
     }
 
     handleClick() {
-        api.post(`users`, { userName: this.state.userName, email: this.state.email, password: this.state.password, fullName: this.state.fullName, age: this.state.age, gender: this.state.gender })
+        api.post(`users`, { id: this.state.id, userName: this.state.userName, email: this.state.email, password: this.state.password, fullName: this.state.fullName, age: this.state.age, gender: this.state.gender })
             .then(res => {
                 alert('حساب کاربری شما با موفقیت ساخته شد')
                 console.log(res)
@@ -104,6 +104,14 @@ class Register extends Component {
                                 <option value={'Male'}>مرد</option>
                                 <option value={'Female'}>زن</option>
                             </Form.Control>
+                        </FormGroup>
+                        <FormGroup controlId="id">
+                            <div>ای دی</div>
+                            <FormControl
+                                value={this.state.id}
+                                onChange={(e) => this.setState({ id: e.target.value })}
+                                type="number"
+                            />
                         </FormGroup>
                         <Button onClick={this.handleClick} block>
                             ثبت نام

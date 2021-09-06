@@ -37,11 +37,11 @@ class Login extends Component {
     handleClick() {
         api.post(`users/login`, { username: this.state.username, password: this.state.password })
             .then(res => {
-                localStorage.setItem('Token', res.data.token);
+                localStorage.setItem('Token', res.data.data.token);
                 
                 this.props.setLoginStatus(true);
                 this.props.getCategory();
-               this.props.getPost();
+                this.props.getPost();
 
                alert('ورود شما با موفقیت انجام شد')
             })

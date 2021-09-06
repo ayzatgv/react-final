@@ -20,12 +20,12 @@ class DetailCategory extends Component {
     componentDidMount() {
         let id = this.props.match.params.id;
 
-        api.get(`category/get/${id}`)
+        api.get(`Categories/${id}`)
             .then(res => {
                 this.setState({
-                    name: res.data.name,
-                    parentCategoryId: res.data.parentCategoryId,
-                    parentCategoryName: res.data.parentCategoryName
+                    name: res.data.data.name,
+                    parentCategoryId: res.data.data.parentCategoryId,
+                    parentCategoryName: res.data.data.parentCategoryName
                 })
             })
             .catch(error => {
@@ -37,7 +37,7 @@ class DetailCategory extends Component {
             id: this.props.match.params.id,
             name: this.state.name,
             parentCategoryId: this.state.parentCategoryId,
-            parentCategoryName: this.data.parentCategoryName
+            parentCategoryName: this.state.parentCategoryName
         };
 
         this.props.editCategory(category);

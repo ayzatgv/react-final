@@ -9,7 +9,7 @@ export const getCategory = () => dispatch => {
         .then(res => {
             dispatch({
                 type: GET_CATEGORY,
-                payload: res.data
+                payload: res.data.data.results
             })
         })
         .catch(error => {
@@ -22,7 +22,7 @@ export const addCategory = data => dispatch => {
         .then(res => {
             dispatch({
                 type: ADD_CATEGORY,
-                payload: res.data
+                payload: res.data.data
             });
             document.getElementById('GoToCategories').click();
         })
@@ -32,11 +32,11 @@ export const addCategory = data => dispatch => {
 };
 
 export const editCategory = data => dispatch => {
-    api.put(`Categories/{id}`, data)
+    api.put(`Categories`, data)
         .then(res => {
             dispatch({
                 type: EDIT_CATEGORY,
-                payload: res.data
+                payload: res.data.data
             })
             document.getElementById('GoToCategories').click();
         })
@@ -46,7 +46,7 @@ export const editCategory = data => dispatch => {
 };
 
 export const deleteCategory = id => dispatch => {
-    api.delete(`Categories/{id}`)
+    api.delete(`Categories/${id}`)
         .then(res => {
             dispatch({
                 type: DELETE_CATEGORY,

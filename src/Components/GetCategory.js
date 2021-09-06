@@ -19,9 +19,9 @@ class GetCategory extends Component {
     render() {
         let Tableee = this.props.Categories.map((item) => {
             return (
-                <tr key={item.ID} >
-                    <td><Button onClick={() => this.handleClick(item.ID)} variant="primary" >Delete</Button></td>
-                    <td><Link to={`/category/detail/${item.ID}`}><Button variant="primary" >Edit</Button></Link></td>
+                <tr key={item.id} >
+                    <td><Button onClick={() => this.handleClick(item.id)} variant="primary" >Delete</Button></td>
+                    <td><Link to={`/category/detail/${item.id}`}><Button variant="primary" >Edit</Button></Link></td>
                     <td>{item.id}</td>
                     <td>{item.name}</td>
                     <td>{item.parentCategoryId}</td>
