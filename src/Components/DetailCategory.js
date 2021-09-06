@@ -33,14 +33,14 @@ class DetailCategory extends Component {
     }
 
     handleClick() {
-        const category = {
+        const data = {
             id: this.props.match.params.id,
             name: this.state.name,
             parentCategoryId: this.state.parentCategoryId,
             parentCategoryName: this.state.parentCategoryName
         };
 
-        this.props.editCategory(category);
+        this.props.editCategory(data);
     }
 
     render() {

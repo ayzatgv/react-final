@@ -17,17 +17,24 @@ class AddCategory extends Component {
     }
 
     handleClick() {
-        const category = {
+        const data = {
             name: this.state.name,
             parentCategoryId: this.state.parentCategoryId,
             parentCategoryName: this.state.parentCategoryName,
             id: this.state.id
         };
 
-        this.props.addCategory(category);
+        this.props.addCategory(data);
     }
 
     render() {
+        let Categories = this.props.Categories.map(
+            (item) => {
+                return (
+                    <option key={item.id} value={item.id} name={item.name}>{item.name}</option>
+                );
+            }
+        );
         return (
             <div style={{ paddingLeft: '7%', paddingTop: 20, paddingRight: '7%' }}>
                 <Row>
@@ -44,16 +51,12 @@ class AddCategory extends Component {
                                     </Form.Group>
                                     <Form.Group controlId="parentCategoryId">
                                         <Form.Label>parentCategoryId</Form.Label>
-                                        <Form.Control value={this.state.parentCategoryId}
-                                            onChange={(e) => { this.setState({ parentCategoryId: e.target.value }) }}
-                                            placeholder="parentCategoryId" />
+                                        <Form.Control onChange={(e) => { this.setState({ parentCategoryId: e.target.value, parentCategoryName: e.target.options[e.target.selectedIndex].text }) }} as="select">
+                                            <option value={0}>یک گزینه را انتخاب کنید</option>
+                                            {Categories}
+                                        </Form.Control>
                                     </Form.Group>
-                                    <Form.Group controlId="parentCategoryName">
-                                        <Form.Label>parentCategoryName</Form.Label>
-                                        <Form.Control value={this.state.parentCategoryName}
-                                            onChange={(e) => { this.setState({ parentCategoryName: e.target.value }) }}
-                                            placeholder="parentCategoryName" />
-                                    </Form.Group>
+
                                     <Form.Group controlId="id">
                                         <Form.Label>id</Form.Label>
                                         <Form.Control value={this.state.id}
@@ -75,7 +78,7 @@ class AddCategory extends Component {
 }
 
 const mapStateToProps = state => ({
-
+    Categories: state.Categories.items
 });
 
 export default connect(mapStateToProps, { addCategory })(AddCategory);

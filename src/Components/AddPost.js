@@ -18,7 +18,7 @@ class AddPost extends Component {
     }
 
     handleClick() {
-        const post = {
+        const data = {
             title: this.state.title,
             description: this.state.description,
             categoryId: this.state.categoryId,
@@ -26,7 +26,7 @@ class AddPost extends Component {
             id: this.state.id
         };
 
-        this.props.addPost(post);
+        this.props.addPost(data);
     }
 
     render() {

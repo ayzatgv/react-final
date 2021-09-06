@@ -35,15 +35,15 @@ class DetailPost extends Component {
     }
 
     handleClick() {
-        const post = {
+        const data = {
             id: this.props.match.params.id,
             title: this.state.title,
             description: this.state.description,
             categoryId: this.state.categoryId,
             authorId: this.state.authorId,
         };
-        
-        this.props.editPost(post);
+
+        this.props.editPost(data);
     }
 
     render() {
