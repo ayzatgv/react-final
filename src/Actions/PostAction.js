@@ -24,6 +24,7 @@ export const addPost = data => dispatch => {
                 type: ADD_POST,
                 payload: res.data.data
             });
+
             document.getElementById('GoToPost').click();
         })
         .catch(error => {

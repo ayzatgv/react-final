@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addPost } from '../Actions/PostAction';
+import uuid from 'react-uuid'
 
 class AddPost extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class AddPost extends Component {
             title: '',
             description: '',
             categoryId: 0,
-            authorId: 0,
+            authorId: 53, // Token?
             id: ''
         }
 
@@ -26,10 +27,9 @@ class AddPost extends Component {
             title: this.state.title,
             description: this.state.description,
             categoryId: this.state.categoryId,
-            authorId: this.state.authorId,
-            id: this.state.id
+            authorId: this.state.authorId, // Token?
+            id: uuid()
         };
-
         this.props.addPost(data);
     }
 
@@ -67,18 +67,6 @@ class AddPost extends Component {
                                             <option value={0}>یک گزینه را انتخاب کنید</option>
                                             {Categories}
                                         </Form.Control>
-                                    </Form.Group>
-                                    <Form.Group controlId="authorId">
-                                        <Form.Label>authorId</Form.Label>
-                                        <Form.Control value={this.state.authorId}
-                                            onChange={(e) => { this.setState({ authorId: e.target.value }) }}
-                                            placeholder="authorId" />
-                                    </Form.Group>
-                                    <Form.Group controlId="id">
-                                        <Form.Label>id</Form.Label>
-                                        <Form.Control value={this.state.id}
-                                            onChange={(e) => { this.setState({ id: e.target.value }) }}
-                                            placeholder="id" />
                                     </Form.Group>
 
                                     <Button onClick={this.handleClick} variant="primary" >
